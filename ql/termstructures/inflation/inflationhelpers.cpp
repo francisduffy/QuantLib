@@ -43,7 +43,7 @@ namespace QuantLib {
         const Date& start)
     : ZeroCouponInflationSwapHelper(
         quote, swapObsLag, start, maturity, std::move(calendar), paymentConvention,
-        std::move(dayCounter), zii, observationInterpolation) {}
+        dayCounter, zii, observationInterpolation) {}
 
     ZeroCouponInflationSwapHelper::ZeroCouponInflationSwapHelper(
         const Handle<Quote>& quote,
@@ -174,9 +174,9 @@ namespace QuantLib {
         CPI::InterpolationType interpolation,
         Handle<YieldTermStructure> nominalTermStructure,
         const Date& start)
-    : RelativeDateBootstrapHelper<YoYInflationTermStructure>(quote), swapObsLag_(swapObsLag),
-      maturity_(maturity), calendar_(std::move(calendar)), paymentConvention_(paymentConvention),
-      dayCounter_(std::move(dayCounter)), interpolation_(interpolation),
+    : RelativeDateBootstrapHelper<YoYInflationTermStructure>(quote, start == Date()),
+      swapObsLag_(swapObsLag), maturity_(maturity), calendar_(std::move(calendar)),
+      paymentConvention_(paymentConvention), dayCounter_(std::move(dayCounter)), interpolation_(interpolation),
       nominalTermStructure_(std::move(nominalTermStructure)), start_(start) {
         yii_ = yii->clone(termStructureHandle_);
         // We want to be notified of changes of fixings, but we don't
