@@ -70,7 +70,12 @@ namespace bp = boost::process;
 #    define BOOST_TEST_MODULE "TestSuite"
 #endif
 using boost::unit_test::test_results;
-using namespace boost::interprocess;
+// using namespace boost::interprocess;
+using boost::interprocess::message_queue;
+using boost::interprocess::create_only;
+using boost::interprocess::open_only;
+using boost::interprocess::interprocess_exception;
+
 using namespace boost::unit_test_framework;
 
 
